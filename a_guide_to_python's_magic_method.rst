@@ -26,14 +26,24 @@ __new__是对象实例化调用的第一个方法。这个类是它的第一个�
 
 把他们放在一起，这里有个使用__inti__和__del__的例子：
 ::
+
     from os.path import join
 
-        class FileObject:
-            '''Wrapper for file objects to make sure the file gets closed on deletion'''
-            def __init__(self, filepath='~', filename='sample.txt'):
+    class FileObject:
+        '''Wrapper for file objects to make sure the file gets closed on deletion'''
+        def __init__(self, filepath='~', filename='sample.txt'):
             # open a file filename in filepath in read and write mode
-                self.file = open(join(filepath,filename),'r+')  
-            def __del__(self):
-                self.file.close()
-                del self.file
+            self.file = open(join(filepath,filename),'r+')  
+        def __del__(self):
+            self.file.close()
+            del self.file
 
+**2、让操作符在类中工作起来**
+
+使用Python魔法方法最大的优势是魔法方法可以很容易实现对象行为就像内置类型一样。它可以避免使用丑陋的反直觉的不标准的方法进行基础操作。在一些语言中，经常进行这样的操作： 
+::
+
+    if instance.equals(other_instance):
+        #do something
+
+你也可以在Python中进行这样的操作，但这会带来混淆和冗长。不同的库也许会使用不同的名称进行同一操作，这会让程序进行很多不必要的操作。
