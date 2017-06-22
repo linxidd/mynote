@@ -39,17 +39,31 @@ ESP/XDA205856
 USA/31195855
 ```  
 #### 元祖的解包  
- ``` >>> b, a = a, b ```  
- ``` _ ``` 解包时候用作占位符。 
-**使用 \* 获取剩余的元素**  
+ ` >>> b, a = a, b `  
+ ` _ ` 解包时候用作占位符。 
+**使用 * 获取剩余的元素**  
 平行赋值(Python3)  
- ``` >>> a, b, \*rest = range(5) ```  
- ``` \* ``` 可以出现在任何位置  
+ ` >>> a, b, \*rest = range(5) `  
+ ` * ` 可以出现在任何位置  
 pep3113 Removal of Tuple Parameter Unpacking  
-
+S
 #### 命名元祖  
 
-``` collections.namedtuple ```  
+` collections.namedtuple `  
 例1-1中 
-``` Card = collections.namedtuple('Card', ['rank', 'suit']) ```  
+` Card = collections.namedtuple('Card', ['rank', 'suit']) `  
 **命名元祖** namedtuple类实例占用的空间和tuple相同，因为区域名储存在类中，占用空间比普通对象小，因为属性不会储存在每个实例的\__dict\__中。  
+
+### 切片 
+  
+#### 切片为什么不包含最后一个元素  
+- 可以方便的辨认切片和range的长度 
+- 可以方便的计算切片和range的长度 结束-开始  
+- 可以很简单的把序列从x处分隔开，而不会重叠:` my_list[:x] `` my_list[x:] `
+  
+#### 切片赋值  
+` >>> l[2:5] = 100 `  
+不合法因为再给切片赋值时右边必须为可迭代对象。  
+
+
+
